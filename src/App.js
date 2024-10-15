@@ -38,8 +38,6 @@ function App() {
         <p>
           <code>Convert the Temperature!</code>
         </p>
-        <p className="sm-test">Tested via Docker, </p>
-        <p className="sm-test">Tested by jest & babel</p>
 
         <br />
         <div className="wrapper">
@@ -55,6 +53,8 @@ function App() {
         </div>
         <br />
         <p className="sm-test">COS40006 Software Deployment and Evolution</p>
+        <p className="sm-test">Tested via Docker, </p>
+        <p className="sm-test">Tested by jest & babel</p>
       </header>
     </div>
   );
