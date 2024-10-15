@@ -7,8 +7,9 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          <code>Convert the Temp!</code>
         </p>
+        <br />
         <div class="wrapper">
           <div class="input-box">
             <h6>Celcius</h6>
