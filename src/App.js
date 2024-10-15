@@ -53,8 +53,11 @@ function App() {
         </div>
         <br />
         <p className="sm-test">COS40006 Software Deployment and Evolution</p>
-        <p className="sm-test">Tested via Docker, </p>
-        <p className="sm-test">Tested by jest & babel</p>
+        <br />
+        <p className="xsm-test">Tested by Jest & Babel</p>
+        <p className="xsm-test">Containerized by Docker </p>
+        <p className="xsm-test">Deployed via Azure</p>
+        <br />
       </header>
     </div>
   );
