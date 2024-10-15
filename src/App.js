@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"; // Add useEffect import
-import logo from "./sun.svg";
+// import logo from "./sun.svg";
+import logo from "./logo.svg";
 import "./App.css";
 import { handleCelsiusInput, handleFahrenheitInput } from "./script";
 
@@ -38,8 +39,6 @@ function App() {
         <p>
           <code>Convert the Temperature!</code>
         </p>
-        <p className="sm-test">Tested via Docker, </p>
-        <p className="sm-test">Tested by jest & babel</p>
 
         <br />
         <div className="wrapper">
@@ -55,6 +54,11 @@ function App() {
         </div>
         <br />
         <p className="sm-test">COS40006 Software Deployment and Evolution</p>
+        <br />
+        <p className="xsm-test">Tested by Jest & Babel</p>
+        <p className="xsm-test">Containerized by Docker </p>
+        <p className="xsm-test">Deployed via Azure</p>
+        <br />
       </header>
     </div>
   );
