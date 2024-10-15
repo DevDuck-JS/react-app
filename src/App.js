@@ -36,9 +36,11 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          <code>Convert the Temp!</code>
+          <code>Convert the Temperature!</code>
         </p>
-        <p>Tested by babel</p>
+        <p className="sm-test">Tested via Docker, </p>
+        <p className="sm-test">Tested by jest & babel</p>
+
         <br />
         <div className="wrapper">
           <div className="input-box">
@@ -51,7 +53,8 @@ function App() {
             <input type="number" id="fahrenheit" />
           </div>
         </div>
-        <p>Software Deployment and Evaluation</p>
+        <br />
+        <p className="sm-test">Software Deployment and Evolution</p>
       </header>
     </div>
   );
