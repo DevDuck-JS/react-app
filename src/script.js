@@ -1,12 +1,12 @@
 // Functions for temperature conversion
-function convertCelsiusToFahrenheit(celsiusValue) {
+export function convertCelsiusToFahrenheit(celsiusValue) {
   if (isNaN(celsiusValue) || celsiusValue === "") {
     return "NaN";
   }
   return ((celsiusValue * 9) / 5 + 32).toFixed(2);
 }
 
-function convertFahrenheitToCelsius(fahrenheitValue) {
+export function convertFahrenheitToCelsius(fahrenheitValue) {
   if (isNaN(fahrenheitValue) || fahrenheitValue === "") {
     return "NaN";
   }
@@ -14,38 +14,31 @@ function convertFahrenheitToCelsius(fahrenheitValue) {
 }
 
 // Function to handle Celsius to Fahrenheit input and display
-function handleCelsiusInput() {
-  const celsiusValue = celsius.value;
+export function handleCelsiusInput(celsiusInput, fahrenheitInput) {
+  const celsiusValue = celsiusInput.value;
   const calculatedFahrenheit = convertCelsiusToFahrenheit(celsiusValue);
 
-  fahrenheit.value = calculatedFahrenheit;
+  fahrenheitInput.value = calculatedFahrenheit;
 
   // Log the entered Celsius and calculated Fahrenheit
   console.log(
     `Celsius: ${celsiusValue}, Calculated Fahrenheit: ${calculatedFahrenheit}`
   );
 
-  if (!celsiusValue) fahrenheit.value = "";
+  if (!celsiusValue) fahrenheitInput.value = "";
 }
 
 // Function to handle Fahrenheit to Celsius input and display
-function handleFahrenheitInput() {
-  const fahrenheitValue = fahrenheit.value;
+export function handleFahrenheitInput(fahrenheitInput, celsiusInput) {
+  const fahrenheitValue = fahrenheitInput.value;
   const calculatedCelsius = convertFahrenheitToCelsius(fahrenheitValue);
 
-  celsius.value = calculatedCelsius;
+  celsiusInput.value = calculatedCelsius;
 
   // Log the entered Fahrenheit and calculated Celsius
   console.log(
     `Fahrenheit: ${fahrenheitValue}, Calculated Celsius: ${calculatedCelsius}`
   );
 
-  if (!fahrenheitValue) celsius.value = "";
+  if (!fahrenheitValue) celsiusInput.value = "";
 }
-
-module.exports = {
-  convertCelsiusToFahrenheit,
-  convertFahrenheitToCelsius,
-  handleCelsiusInput,
-  handleFahrenheitInput,
-};
