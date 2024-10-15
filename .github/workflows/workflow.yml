@@ -1,0 +1,30 @@
+name: Build and Push to Docker Hub
+
+on: [pull_request]
+
+jobs:
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      # Step 1: Log in to Docker Hub
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # Step 2: Build the Docker image
+      - name: Build Docker image
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/azure-react:${{ github.sha }} .
+
+      # Step 3: Push the Docker image to Docker Hub
+      - name: Push Docker image
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/azure-react:${{ github.sha }}
+
+      # Optionally, tag the image as latest
+      - name: Tag Docker image as latest
+        run: |
+          docker tag ${{ secrets.DOCKERHUB_USERNAME }}/azure-react:${{ github.sha }} ${{ secrets.DOCKERHUB_USERNAME }}/azure-react:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/azure-react:latest
