@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"; // Add useEffect import
-// import logo from "./sun.svg";
-import logo from "./logo.svg";
+import logo from "./sun.svg";
+// import logo from "./logo.svg";
 import "./App.css";
 import { handleCelsiusInput, handleFahrenheitInput } from "./script";
 
