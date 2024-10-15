@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"; // Add useEffect import
-import logo from "./logo.svg";
+import logo from "./sun.svg";
 import "./App.css";
 import { handleCelsiusInput, handleFahrenheitInput } from "./script";
 
@@ -54,7 +54,7 @@ function App() {
           </div>
         </div>
         <br />
-        <p className="sm-test">Software Deployment and Evolution</p>
+        <p className="sm-test">COS40006 Software Deployment and Evolution</p>
       </header>
     </div>
   );
