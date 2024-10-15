@@ -51,8 +51,8 @@ function App() {
             <input type="number" id="fahrenheit" />
           </div>
         </div>
+        <p>Software Deployment and Evaluation</p>
       </header>
-      <p>Software Deployment and Evaluation</p>
     </div>
   );
 }
