@@ -64,7 +64,7 @@
 }
 
 .wrapper .input-box h6 {
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 400;
   color: #fff;
   margin-bottom: 2px;
@@ -84,4 +84,8 @@
 .input-box input::-webkit-inner-spin-button,
 .input-box input::-webkit-outer-spin-button {
   display: none;
+}
+
+.sm-test {
+  font-size: 14px;
 }
