@@ -37,7 +37,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          <code>Convert the Temperature!</code>
+          <code>Convert the Temperature! New branch</code>
         </p>
 
         <br />
