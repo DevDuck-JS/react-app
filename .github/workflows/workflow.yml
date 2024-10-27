@@ -8,21 +8,21 @@ on:
 jobs:
   create-pull-request:
     runs-on: ubuntu-latest
-    if: github.ref != 'refs/heads/main' # Only run on non-main branches
+    if: github.ref != 'refs/heads/main' 
     steps:
       - uses: actions/checkout@v2
 
-      # Check if a pull request already exists, if not, create one
-      - name: Check for existing pull request
-        id: pr
+      # Check for existing pull request and create one if it doesn’t exist
+      - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
-          branch: main
+          base: main # Set the target branch for the pull request
+          head: ${{ github.ref_name }} # Set the source branch (current branch)
           title: "Automated Pull Request from ${{ github.ref_name }}"
           body: "This pull request was automatically created when pushing to the branch ${{ github.ref_name }}."
           labels: "automated"
 
-  tests:
+tests:
     runs-on: ubuntu-latest
     needs: create-pull-request # Only run tests if the pull request is created
 
