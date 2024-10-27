@@ -57,19 +57,21 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const { data: pullRequest } = await github.pulls.list({
+            const pullRequests = await github.rest.pulls.list({
               owner: context.repo.owner,
               repo: context.repo.repo,
               state: 'open',
-              head: context.repo.owner + ':' + context.ref_name
+              head: `${context.repo.owner}:${context.ref_name}`
             });
 
-            if (pullRequest.length > 0) {
-              await github.pulls.merge({
+            if (pullRequests.data.length > 0) {
+              await github.rest.pulls.merge({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                pull_number: pullRequest[0].number
+                pull_number: pullRequests.data[0].number
               });
+            } else {
+              console.log("No pull request found to merge.");
             }
 
   docker-build:
