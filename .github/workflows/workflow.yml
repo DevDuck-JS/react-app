@@ -8,7 +8,7 @@ on:
 jobs:
   create-pull-request:
     runs-on: ubuntu-latest
-    if: github.ref != 'refs/heads/main' 
+    if: github.ref != 'refs/heads/main'
     steps:
       - uses: actions/checkout@v2
 
@@ -22,7 +22,7 @@ jobs:
           body: "This pull request was automatically created when pushing to the branch ${{ github.ref_name }}."
           labels: "automated"
 
-tests:
+  tests:
     runs-on: ubuntu-latest
     needs: create-pull-request # Only run tests if the pull request is created
 
