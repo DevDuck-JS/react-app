@@ -1,14 +1,34 @@
 name: Build and Push to Docker Hub
 
-on: [pull_request]
+on:
+  push:
+    branches:
+      - "**" # Run on all branches
 
 jobs:
+  create-pull-request:
+    runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v2
+
+      # Check for existing pull request and create one if it doesn’t exist
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          base: main # Set the target branch for the pull request
+          head: ${{ github.ref_name }} # Set the source branch (current branch)
+          title: "Automated Pull Request from ${{ github.ref_name }}"
+          body: "This pull request was automatically created when pushing to the branch ${{ github.ref_name }}."
+          labels: "automated"
+
   tests:
     runs-on: ubuntu-latest
+    needs: create-pull-request # Only run tests if the pull request is created
 
     strategy:
       matrix:
-        node-version: ["20.x", "18.x"]
+        node-version: ["20.x"]
 
     steps:
       - uses: actions/checkout@v2
@@ -17,18 +37,45 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: npm install
+      - name: Install dependencies
         run: npm ci
 
-      - name: tests
+      - name: Run tests
         run: npm test
 
-      - name: tests
-        run: npm test
+  merge-pull-request:
+    runs-on: ubuntu-latest
+    needs: tests # Only merge if tests pass
+    if: github.ref != 'refs/heads/main' # Only merge non-main branches
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Merge Pull Request to Main
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const pullRequests = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              head: `${context.repo.owner}:${context.ref_name}`
+            });
+
+            if (pullRequests.data.length > 0) {
+              await github.rest.pulls.merge({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: pullRequests.data[0].number
+              });
+            } else {
+              console.log("No pull request found to merge.");
+            }
 
   docker-build:
     runs-on: ubuntu-latest
-    needs: tests # Only run Docker job if the tests pass
+    needs: merge-pull-request # Only build and push if the merge succeeds
 
     steps:
       - uses: actions/checkout@v2
