@@ -1,8 +1,3 @@
-// import {
-//   convertCelsiusToFahrenheit,
-//   convertFahrenheitToCelsius,
-// } from "./script";
-
 // Import the functions from the script file
 const {
   convertCelsiusToFahrenheit,
